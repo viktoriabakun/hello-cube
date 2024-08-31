@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 const canvas = document.querySelector('canvas');
-const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
 
 // CAMERA
 const fov = 75; // field of view
@@ -29,28 +29,28 @@ scene.add(redLight);
 
 // GREEN LIGHT
 const whiteLight = new THREE.DirectionalLight(0x00ff00, 5)
-whiteLight.position.set(1,10,4);
+whiteLight.position.set(1, 10, 4);
 scene.add(whiteLight);
 
 // BLUE LIGHT
 const blueLight = new THREE.DirectionalLight(0x0000ff, 5)
-blueLight.position.set(1,-10,4);
+blueLight.position.set(1, -10, 4);
 scene.add(blueLight);
 
-function makeCubeInstance (geometry, color, x){
-const material = new THREE.MeshPhongMaterial({ color });
+function makeCubeInstance(geometry, color, x) {
+    const material = new THREE.MeshPhongMaterial({color});
 
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
-cube.position.x = x;
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    cube.position.x = x;
 
-return cube;
+    return cube;
 }
 
 const cubes = [
-    makeCubeInstance(geometry, 0x44aa88,  0),
+    makeCubeInstance(geometry, 0x44aa88, 0),
     makeCubeInstance(geometry, 0x8844aa, -2),
-    makeCubeInstance(geometry, 0xaa8844,  2),
+    makeCubeInstance(geometry, 0xaa8844, 2),
 ];
 
 // ANIMATION
@@ -67,4 +67,5 @@ function render(time) {
 
     requestAnimationFrame(render);
 }
+
 requestAnimationFrame(render);
