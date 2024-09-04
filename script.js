@@ -56,6 +56,13 @@ const cubes = [
 // ANIMATION
 function render(time) {
     time *= 0.001;  // convert time to seconds
+
+    if (resizeRendererToDisplaySize(renderer)) {
+        const canvas = renderer.domElement;
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+    }
+
     cubes.forEach((cube, index) => {
         const speed = 1 + index * .1;
         const rotation = time * speed;
@@ -69,3 +76,19 @@ function render(time) {
 }
 
 requestAnimationFrame(render);
+
+function resizeRendererToDisplaySize(renderer){
+    // canvas.width = resolution, how many pixels wide the canvas's internal drawing area is
+    // canvas.clientWidth = width of the canvas element as it is displayed on the screen, in CSS pixels
+    const canvas = renderer.domElement;
+    const devicePixelRatio = window.devicePixelRatio;
+    const width = Math.floor(canvas.clientWidth * devicePixelRatio);
+    const height = Math.floor(canvas.clientHeight * devicePixelRatio);
+    const needResize = canvas.width !== width || canvas.height !== height;
+
+    if(needResize){
+        renderer.setSize( width, height, false);
+    }
+
+    return needResize;
+}
